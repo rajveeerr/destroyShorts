@@ -6,8 +6,10 @@
     "permissions": [
       "activeTab",
       "scripting",
-      "tabs"
+      "tabs",
+      "storage"
     ],
+    "host_permissions": ["*://*.youtube.com/*"],
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
@@ -20,5 +22,15 @@
       "16": "icon16.png",
       "48": "icon48.png",
       "128": "icon128.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/*"],
+        "js": ["content-script.js"],
+        "run_at": "document_idle"
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
     }
   }
